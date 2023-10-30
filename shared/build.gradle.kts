@@ -1,7 +1,7 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-    kotlin("plugin.serialization") version "1.8.22"
+    kotlin("plugin.serialization") version "1.9.10"
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -26,41 +26,57 @@ kotlin {
         }
     }
 
-    val ktorVersion = "2.3.1"
+    val ktorVersion = "2.3.2"
+    val coroutinesVersion = "1.7.3"
+    val koinVersion = "3.4.3"
+    val multiplatformSettingsVersion = "1.0.0"
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
 
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
 
-                implementation ("io.insert-koin:koin-core:3.2.0")
+                implementation ("io.insert-koin:koin-core:$koinVersion")
+
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+
+                implementation("com.russhwolf:multiplatform-settings:$multiplatformSettingsVersion")
+                implementation("com.russhwolf:multiplatform-settings-coroutines:$multiplatformSettingsVersion")
             }
         }
         val androidMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-android:$ktorVersion")
+                implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+
+                implementation ("androidx.work:work-runtime:2.8.1")
+                implementation ("androidx.work:work-runtime-ktx:2.8.1")
+
+                implementation ("io.insert-koin:koin-android:$koinVersion")
             }
         }
         val iosMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-darwin:$ktorVersion")
+
+                implementation ("io.insert-koin:koin-core:$koinVersion")
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
             }
         }
-
     }
 }
 
 android {
-    namespace = "com.example.kmmtest"
+    namespace = "com.unsplash.android"
     compileSdk = 33
     defaultConfig {
         minSdk = 24

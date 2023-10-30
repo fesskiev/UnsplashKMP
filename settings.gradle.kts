@@ -13,7 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "KMMTest"
+rootProject.name = "UnsplashKMP"
 include(":androidApp")
 include(":shared")
-include(":shared:core-network")

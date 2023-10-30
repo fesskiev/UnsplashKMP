@@ -5,12 +5,12 @@ import shared
 struct iOSApp: App {
     
     init() {
-        HelperKt.doInitKoin()
+        Koin.start()
     }
     
     var body: some Scene {
         WindowGroup {
-            ContentView(viewModel: ContentView.ViewModel())
+            PhotoListView()
         }
     }
 }

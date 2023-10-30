@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">UnsplashKMP</string>
+
+    <string name="error_unknown">Unknown error</string>
+    <string name="error_timeout">Timeout error</string>
+    <string name="error_connect_server">Cannot connect to the server</string>
+    <string name="error_no_network">No network</string>
+
+</resources>
